@@ -9,6 +9,11 @@
  */
 struct cache_entry *alloc_entry(char *path, char *content_type, void *content, int content_length)
 {
+    (void) path;
+    (void) content_type;
+    (void) content;
+    (void) content_length;
+    return 0;
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
@@ -19,6 +24,7 @@ struct cache_entry *alloc_entry(char *path, char *content_type, void *content, i
  */
 void free_entry(struct cache_entry *entry)
 {
+    (void) entry;
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
@@ -94,6 +100,9 @@ struct cache *cache_create(int max_size, int hashsize)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    (void) max_size;
+    (void) hashsize;
+    return 0;
 }
 
 void cache_free(struct cache *cache)
@@ -109,7 +118,7 @@ void cache_free(struct cache *cache)
 
         cur_entry = next_entry;
     }
-
+    
     free(cache);
 }
 
@@ -125,6 +134,11 @@ void cache_put(struct cache *cache, char *path, char *content_type, void *conten
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    (void) cache;
+    (void) path;
+    (void) content;
+    (void) content_type;
+    (void) content_length;
 }
 
 /**
@@ -135,4 +149,7 @@ struct cache_entry *cache_get(struct cache *cache, char *path)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    (void) cache;
+    (void) path;
+    return 0;
 }
