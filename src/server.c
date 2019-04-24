@@ -48,7 +48,7 @@
  * 
  * Return the value from the send() function.
  */
-int send_response(int fd, char *header, char *content_type, void *body, int content_length)
+int send_response(int fd, char *header, char *content_type, void *content, int content_length)
 {
     const int max_response_size = 262144;
     char response[max_response_size];
@@ -62,8 +62,7 @@ int send_response(int fd, char *header, char *content_type, void *body, int cont
                                             // "%s\n",
                                             header, content_type, content_length
     );
-    memcpy(response + response_length, body, content_length);
-    // printf("\n\nResponse: %s\n <------------>\n Response_length: %d\n\n", response, response_length);
+    memcpy(response + response_length, content, content_length);
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
