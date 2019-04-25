@@ -12,8 +12,14 @@ struct cache_entry *alloc_entry(char *path, char *content_type, void *content, i
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
-    path = malloc()
-    // char content_type = content_type
+    struct cache_entry *ce = malloc(*cache_entry);
+
+    ce->path = malloc(strlen(path));
+    ce->content_type = malloc(strlen(*content_type));
+    ce->content = malloc(content_length);
+    ce->content_length = content_length;
+    ce->next = NULL;
+    ce->prev = NULL;
 }
 
 /**
@@ -21,10 +27,14 @@ struct cache_entry *alloc_entry(char *path, char *content_type, void *content, i
  */
 void free_entry(struct cache_entry *entry)
 {
-    (void) entry;
+    
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
+    free(entry->path);
+    free(entry->content);
+    free(entry->content_type);
+    free(entry);
 }
 
 /**
@@ -97,8 +107,13 @@ struct cache *cache_create(int max_size, int hashsize)
     ///////////////////
     // IMPLEMENT ME! //
     ///////////////////
-    max_size = 5;
-    hashsize = 5;
+    struct cache *cache = malloc(*cache);
+
+    cache->index = hashtable_create(hashsize, NULL);
+    cache->head = NULL;
+    cache->tail = NULL;
+    cache->max_size = max_size;
+    cache->cur_size =  0;
 }
 
 void cache_free(struct cache *cache)
@@ -132,9 +147,9 @@ void cache_put(struct cache *cache, char *path, char *content_type, void *conten
     ///////////////////
     
     // Allocate a new cache entry with the passed parameters.
-
+    struct cache entry *ce = alloc_entry(path, content_type, content, content_length);
     // Insert the entry at the head of the doubly-linked list.
-
+        // cache->head = 
     // Store the entry in the hashtable as well, indexed by the entry's path.
 
     // increment the current size of the cache.
@@ -158,5 +173,12 @@ struct cache_entry *cache_get(struct cache *cache, char *path)
     // attempt to find the cache entry pointer by path in the hash table.
     // if not found, return NULL
     // move the cache entry to the head of the doubly-linked list.
+        // set prev to next
+        // next to prev
+        // reassign current cache prev to NULL
+        // reassign current cache next to head
     // return the cache entry pointer.
 }
+
+
+// let newObject = new cache(max_size, cur_size);
